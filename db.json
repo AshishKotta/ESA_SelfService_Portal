@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "user_id": "406274",
+      "password": "Password@123",
+      "first_name": "Ashish",
+      "last_name": "Kotta",
+      "role": "Sr Developer"
+    },
+    {
+      "id": "2",
+      "user_id": "111234",
+      "password": "Password@123",
+      "first_name": "Karthik",
+      "last_name": "T",
+      "role": "Manager"
+    },
+    {
+      "id": "3",
+      "user_id": "222123",
+      "password": "Password@123",
+      "first_name": "Don",
+      "last_name": "Lord",
+      "role": "Developer"
+    }
+  ]
+}
