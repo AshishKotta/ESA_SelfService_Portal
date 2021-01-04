@@ -13,7 +13,14 @@ import { MatTableDataSource } from '@angular/material/table';
 export class AdminComponent implements OnInit {
   users: User[] = [];
 
-  displayedColumns: string[] = ['User ID', 'First Name', 'Last Name', 'Role'];
+  displayedColumns: string[] = [
+    'User ID',
+    'First Name',
+    'Last Name',
+    'Role',
+    'Created Date',
+    'Action',
+  ];
   dataSource: MatTableDataSource<User>;
   error: string;
   searchKey: string;
@@ -54,5 +61,9 @@ export class AdminComponent implements OnInit {
   onClearSearch() {
     this.searchKey = null;
     this.dataSource = new MatTableDataSource(this.users);
+  }
+
+  onDelete(event: string) {
+    console.log(event);
   }
 }

@@ -6,7 +6,8 @@
       "password": "Password@123",
       "first_name": "Ashish",
       "last_name": "Kotta",
-      "role": "Sr Developer"
+      "role": "Sr Developer",
+      "created_dt": "2013-02-15T00:00:00Z"
     },
     {
       "id": "2",
@@ -14,7 +15,8 @@
       "password": "Password@123",
       "first_name": "Karthik",
       "last_name": "T",
-      "role": "Manager"
+      "role": "Manager",
+      "created_dt": "2009-02-15T01:20:00Z"
     },
     {
       "id": "3",
@@ -22,7 +24,8 @@
       "password": "Password@123",
       "first_name": "Don",
       "last_name": "Lord",
-      "role": "Developer"
+      "role": "Developer",
+      "created_dt": "2018-02-22T10:10:00Z"
     }
   ]
 }
