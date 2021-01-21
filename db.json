@@ -26,6 +26,46 @@
       "last_name": "Lord",
       "role": "Developer",
       "created_dt": "2018-02-22T10:10:00Z"
+    },
+    {
+      "id": "m5TzCJh",
+      "user_id": "101234",
+      "password": "Password@123",
+      "first_name": "Ram",
+      "last_name": "Murthy",
+      "role": "Developer",
+      "created_dt": "2021-01-21T11:51:12.018Z"
+    },
+    {
+      "id": "90NpOiK",
+      "user_id": "222341",
+      "password": "Password@123",
+      "first_name": "Mohan",
+      "last_name": "Das",
+      "role": "Sr Developer",
+      "created_dt": "2021-01-21T12:06:20.575Z"
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "role": "Manager"
+    },
+    {
+      "id": 2,
+      "role": "Proxy Manager"
+    },
+    {
+      "id": 3,
+      "role": "Sr Developer"
+    },
+    {
+      "id": 4,
+      "role": "Developer"
+    },
+    {
+      "id": 5,
+      "role": "Admin"
     }
   ]
 }

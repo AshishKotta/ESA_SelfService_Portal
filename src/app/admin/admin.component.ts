@@ -1,9 +1,18 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { User } from '../models/user.model';
 import { AdminService } from '../services/admin.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -12,6 +21,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class AdminComponent implements OnInit {
   users: User[] = [];
+  modalRef: BsModalRef;
 
   displayedColumns: string[] = [
     'User ID',
@@ -28,9 +38,18 @@ export class AdminComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private adminService: AdminService) {}
+  constructor(
+    private adminService: AdminService,
+    private modalService: BsModalService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.getUsers();
+  }
+
+  getUsers() {
     this.adminService.getUsers().subscribe(
       (res) => {
         this.users = res;
@@ -63,7 +82,28 @@ export class AdminComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.users);
   }
 
-  onDelete(event: string) {
-    console.log(event);
+  onDelete(id: string) {
+    this.modalRef.hide();
+    this.adminService.deleteUser(id).subscribe(
+      (res) => {
+        this.toastr.success('Deleted successfully...');
+        this.getUsers();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  addUser() {
+    this.router.navigate(['/admin/adduser']);
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-md' });
+  }
+
+  decline(): void {
+    this.modalRef.hide();
   }
 }

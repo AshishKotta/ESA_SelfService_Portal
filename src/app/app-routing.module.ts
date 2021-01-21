@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdduserComponent } from './admin/adduser/adduser.component';
 import { AdminComponent } from './admin/admin.component';
 import { AllocationComponent } from './allocation/allocation.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -13,6 +14,7 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     children: [
       { path: 'admin', component: AdminComponent },
+      { path: 'admin/adduser', component: AdduserComponent },
       { path: 'allocations', component: AllocationComponent },
     ],
   },

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from '../models/user.model';
 import { LoginService } from '../services/login.service';
 
@@ -11,7 +12,11 @@ import { LoginService } from '../services/login.service';
 export class LoginComponent implements OnInit {
   model: any = {};
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -33,10 +38,12 @@ export class LoginComponent implements OnInit {
           } else {
             this.router.navigateByUrl('/allocations');
           }
+        } else {
+          this.toastr.error('Invalid username or password.');
         }
       },
       (err) => {
-        console.log(err);
+        this.toastr.info(err);
       }
     );
   }

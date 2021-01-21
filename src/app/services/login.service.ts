@@ -6,15 +6,17 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  baseUrl = 'http://localhost:3000/users/';
+  baseUrl = environment.apiUrl;
   private currentUsrSrc = new ReplaySubject<User>(1);
   currentUser$ = this.currentUsrSrc.asObservable();
+  error: string = null;
 
   constructor(private http: HttpClient) {}
 
@@ -24,7 +26,7 @@ export class LoginService {
     params = params.append('password', model.password);
 
     return this.http
-      .get<User>(this.baseUrl, { params: params })
+      .get<User>(this.baseUrl + 'users', { params: params })
       .pipe(
         map((res: User) => {
           for (let key in res) {
@@ -44,9 +46,17 @@ export class LoginService {
     this.currentUsrSrc.next(null);
   }
 
-  private handleError(err: HttpErrorResponse) {
-    let errorMsg = 'Invalid Username or Password.';
-    return throwError(errorMsg);
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      //errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = 'Unable to connect to network. Please try after sometime.';
+    }
+    return throwError(errorMessage);
   }
 
   setCurrentUser(user: User) {

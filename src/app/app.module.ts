@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgMaterialModule } from './shared/ng-material.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { LoginComponent } from './login/login.component';
 import { AllocationComponent } from './allocation/allocation.component';
+import { AdduserComponent } from './admin/adduser/adduser.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { AllocationComponent } from './allocation/allocation.component';
     AdminComponent,
     LoginComponent,
     AllocationComponent,
+    AdduserComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { AllocationComponent } from './allocation/allocation.component';
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
     }),
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
