@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgMaterialModule } from './shared/ng-material.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -15,6 +15,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { LoginComponent } from './login/login.component';
 import { AllocationComponent } from './allocation/allocation.component';
 import { AdduserComponent } from './admin/adduser/adduser.component';
+import { EditAllocationComponent } from './allocation/edit-allocation/edit-allocation.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,7 @@ import { AdduserComponent } from './admin/adduser/adduser.component';
     LoginComponent,
     AllocationComponent,
     AdduserComponent,
+    EditAllocationComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,8 +41,11 @@ import { AdduserComponent } from './admin/adduser/adduser.component';
       positionClass: 'toast-bottom-right',
     }),
     ModalModule.forRoot(),
+    NgxSpinnerModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

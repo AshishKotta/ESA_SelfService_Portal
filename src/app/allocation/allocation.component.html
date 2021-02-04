@@ -1,1 +1,57 @@
-<p>allocation works!</p>
+<div>
+  <mat-form-field floatLabel="never" style="margin-left: 15px;">
+    <!-- <mat-label>Search</mat-label> -->
+    <input matInput (keyup)="applyFilter($event)" [(ngModel)]="searchKey" placeholder="Search" >
+    <button mat-button *ngIf="searchKey" matSuffix mat-icon-button aria-label="Clear" (click)="onClearSearch()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <!-- <button type="button" class="btn btn-outline-success pull-right mt-3 mr-3" (click)="addUser()">Upload Report</button> -->
+  </div>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="report_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Report Id </th>
+          <td mat-cell *matCellDef="let row"> <a routerLink="/allocations/{{row.report_name}}">{{row.report_name}}</a> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="emp_cnt">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee Count </th>
+          <td mat-cell *matCellDef="let row"> {{row.emp_cnt}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="prjct_cnt">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Projects </th>
+          <td mat-cell *matCellDef="let row"> {{row.prjct_cnt}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="upld_user_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Uploaded By </th>
+          <td mat-cell *matCellDef="let row"> {{row.upld_user_id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="upld_dt">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Upload Date </th>
+          <td mat-cell *matCellDef="let row"> {{row.upld_dt | date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="review_dt">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Review Date </th>
+          <td mat-cell *matCellDef="let row"> {{row.review_dt | date}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+
+      <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+    </div>

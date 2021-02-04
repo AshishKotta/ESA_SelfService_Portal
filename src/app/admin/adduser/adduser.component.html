@@ -1,5 +1,10 @@
 <div class="container col-sm-8" style="margin-top: 100px;">
 <form #userForm="ngForm" (ngSubmit)="saveUser(user)">
+  <div class="col-10">
+    <div class="alert alert-info" *ngIf="userForm.dirty">
+      <strong>Information: </strong> You have made changes. Any unsaved changes will be lost.
+    </div>
+  </div>
   <div class="row mb-3">
     <label for="user_id" class="col-sm-2 col-form-label">User Id</label>
     <div class="col-sm-7">

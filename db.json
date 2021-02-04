@@ -67,5 +67,17 @@
       "id": 5,
       "role": "Admin"
     }
+  ],
+
+  "reports": [
+    {"id": "1", "report_id":"1", "report_name": "ESA-01212021-10", "prjct_cnt": "2", "upld_user_id": "111234", "emp_cnt": "3", "status":"", "upld_dt":"2021-01-21T11:51:12.018Z", "review_dt": ""},
+    {"id": "2", "report_id":"2", "report_name": "ESA-01192021-12", "prjct_cnt": "2", "upld_user_id": "111234", "emp_cnt": "2", "status":"", "upld_dt":"2021-01-19T10:51:12.018Z", "review_dt": ""},
+    {"id": "3", "report_id":"3", "report_name": "ESA-01202021-13", "prjct_cnt": "3", "upld_user_id": "111234", "emp_cnt": "5", "status":"", "upld_dt":"2021-01-20T11:51:12.018Z", "review_dt": ""}
+  ],
+
+  "projects": [
+    {"id":"1", "report_name":"ESA-01212021-10", "project_id":"CTS-FB", "emp_id":"406274", "alloc_percent":"50", "alloc_type":"BL", "alloc_start":"2021-01-01T11:51:12.018Z", "alloc_end":"2021-12-31T11:51:12.018Z"},
+    {"id":"2", "report_name":"ESA-01212021-10", "project_id":"CTS-TM", "emp_id":"222123", "alloc_percent":"100", "alloc_type":"BL", "alloc_start":"2021-01-01T11:51:12.018Z", "alloc_end":"2021-12-31T11:51:12.018Z"},
+    {"id":"3", "report_name":"ESA-01212021-10", "project_id":"CTS-FB", "emp_id":"222341", "alloc_percent":"50", "alloc_type":"NBL", "alloc_start":"2021-01-01T11:51:12.018Z", "alloc_end":"2021-12-31T11:51:12.018Z"}
   ]
 }

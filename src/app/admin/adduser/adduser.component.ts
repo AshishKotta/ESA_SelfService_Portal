@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -13,6 +13,13 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class AdduserComponent implements OnInit {
   @ViewChild('userForm', { static: false }) userForm: NgForm;
+  @HostListener('window:beforeunload', ['$event']) unloadNotification(
+    $event: any
+  ) {
+    if (this.userForm.dirty) {
+      $event.returnValue = true;
+    }
+  }
   roles: Role[];
   user: User = {
     id: null,
@@ -30,16 +37,26 @@ export class AdduserComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.adminService.getRoles().subscribe((res) => {
-      this.roles = res;
-    });
+    this.adminService.getRoles().subscribe(
+      (res) => {
+        this.roles = res;
+      },
+      (err) => {
+        this.toastr.error(err);
+      }
+    );
   }
 
   saveUser(userdata: User) {
-    this.adminService.saveUser(userdata).subscribe((res) => {
-      this.userForm.reset();
-      this.toastr.success('Employee added successfully');
-      this.router.navigate(['/admin']);
-    });
+    this.adminService.saveUser(userdata).subscribe(
+      (res) => {
+        this.userForm.reset();
+        this.toastr.success('Employee added successfully');
+        this.router.navigate(['/admin']);
+      },
+      (err) => {
+        this.toastr.error(err);
+      }
+    );
   }
 }

@@ -24,11 +24,11 @@ export class AdminComponent implements OnInit {
   modalRef: BsModalRef;
 
   displayedColumns: string[] = [
-    'User ID',
-    'First Name',
-    'Last Name',
-    'Role',
-    'Created Date',
+    'user_id',
+    'first_name',
+    'last_name',
+    'role',
+    'created_dt',
     'Action',
   ];
   dataSource: MatTableDataSource<User>;
